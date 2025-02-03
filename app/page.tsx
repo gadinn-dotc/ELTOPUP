@@ -14,36 +14,33 @@ export default function Home() {
           <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Home</a>
           <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Leaderboard</a>
           <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Histori</a>
-          <a href="#" style={{ color: 'white', backgroundColor: '#FACC15', padding: '5px 10px', borderRadius: '5px', textDecoration: 'none' }}>Sign In</a>
+          <a href="#" style={{ color: '#3B82F6', backgroundColor: 'white', padding: '5px 10px', borderRadius: '5px', textDecoration: 'none' }}>Sign In</a>
         </div>
       </nav>
 
       {/* Main Section */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '50px', minHeight: '80vh', position: 'relative' }}>
-        <div style={{ maxWidth: '50%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+        <div style={{ maxWidth: '50%', padding: '50px' }}>
           <h1 style={{ color: '#FACC15', fontSize: '36px', margin: '0 0 10px', fontWeight: 'bold' }}>HALO GAMERS !!</h1>
           <h2 style={{ color: '#1E3A8A', fontSize: '28px', margin: '0 0 10px', fontWeight: 'bold' }}>
             Top-up Game dan Mulai Petualangan Baru di dunia Gaming!
           </h2>
-          <p style={{ color: '#4B5563', fontSize: '16px', margin: '0 0 10px' }}>
+          <p style={{ color: '#4B5563', fontSize: 'px', margin: '0 0 10px' }}>
             Akses Beragam Metode untuk Membawa Anda Menjadi Pemenang yang Sebenarnya!!
           </p>
           <a href="#" style={{ backgroundColor: '#3B82F6', color: 'white', padding: '10px 20px', borderRadius: '5px', textDecoration: 'none' }}>
             Top Up Now!
           </a>
         </div>
-        <div style={{ position: 'absolute', right: '50px', top: '80px', width: '420px' }}>
+        <div>
           <Image
             src={Foto}
             alt="Character"
-            width={820}
-            height={820}
+            width={1000}
+            height={1000}
           />
         </div>
       </div>
-
-      {/* White Background Section (under the main section) */}
-      <div style={{ backgroundColor: 'white', padding: '50px 0' }}></div>
 
       {/* Footer Section */}
       <footer style={{ backgroundColor: '#1F2937', color: 'white', padding: '50px', marginTop: '50px' }}>
@@ -51,7 +48,7 @@ export default function Home() {
           <div style={{ maxWidth: '30%', marginBottom: '20px' }}>
             <Image src={Logo} alt="Logo" width={150} height={150} />
             <p style={{ marginTop: '20px', color: '#D1D5DB' }}>
-              Aplikasi El-Top up adalah platform yang memungkinkan pengguna untuk membeli mata uang virtual, item, atau kredit dalam game dengan mudah dan cepat. Ide utama dari aplikasi ini adalah untuk memberikan pengalaman yang nyaman bagi para pemain game yang ingin mempercepat kemajuan dalam permainan tanpa perlu keluar dari game itu sendiri.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
           <div style={{ maxWidth: '20%', marginBottom: '20px' }}>
