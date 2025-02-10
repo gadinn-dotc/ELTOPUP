@@ -6,17 +6,22 @@ export default function Home() {
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', backgroundColor: '#F9FAFB', minHeight: '100vh' }}>
       {/* Navbar */}
-      <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '20px 40px', backgroundColor: '#3B82F6' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Image src={Logo} alt="Logo" width={150} height={150} />
+      <header className="bg-blue-500 text-white py-6 shadow-md">
+        <div className="container mx-auto flex justify-between items-center px-6">
+          {/* Logo */}
+          <div className="flex items-center ml-[-40px]">
+            <Image src={Logo} alt="Company Logo" width={150} height={150} />
+          </div>
+          
+          {/* Navbar */}
+          <nav className="space-x-6">
+            <a href="#" className="hover:text-gray-200 bg-blue-800 px-4 py-2 rounded-full text-xl">Home</a>
+            <a href="#" className="hover:text-gray-200 text-xl">Leaderboard</a>
+            <a href="#" className="hover:text-gray-200 text-xl">Histori</a>
+            <a href="#" className="hover:text-gray-200 text-xl">Profile</a>
+          </nav>
         </div>
-        <div>
-          <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Home</a>
-          <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Leaderboard</a>
-          <a href="#" style={{ color: 'white', margin: '0 10px', textDecoration: 'none' }}>Histori</a>
-          <a href="#" style={{ color: '#3B82F6', backgroundColor: 'white', padding: '5px 10px', borderRadius: '5px', textDecoration: 'none' }}>Sign In</a>
-        </div>
-      </nav>
+      </header>
 
       {/* Main Section */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -36,8 +41,8 @@ export default function Home() {
           <Image
             src={Foto}
             alt="Character"
-            width={1000}
-            height={1000}
+            width={1500}
+            height={1500}
           />
         </div>
       </div>

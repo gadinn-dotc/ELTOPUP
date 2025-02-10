@@ -16,8 +16,10 @@ import RblxLogo from "@/app/Assets/rblx logo.png";
 import Pubg from "@/app/Assets/PubgCard.png";
 import PubgLogo from "@/app/Assets/pubg logo.png";
 import Banner from "@/app/Assets/Banner.png";
+import useAuthMiddleware from "@/app/hooks/auth";
 
 export default function Home() {
+  useAuthMiddleware();
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
       {/* Header */}

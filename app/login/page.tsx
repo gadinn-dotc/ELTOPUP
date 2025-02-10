@@ -1,15 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import Image from "next/image";
 import Logo from "@/app/Assets/logo el top ap kuning.png";
 import Foto from "@/app/Assets/reserve.jpg";
+import { useAuth } from "@/app/context/AuthContext";
 
-export default function Home() {
-  const [showPassword, setShowPassword] = useState(false);
+const Home: React.FC = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [form, setForm] = useState<{ email: string; password: string }>({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState<string>("");
+
+  const { login } = useAuth();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      await login(form);
+    } catch (error: any) {
+      setError(error.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -36,17 +60,19 @@ export default function Home() {
               Silahkan masuk ke akun anda yang telah terdaftar
             </p>
 
-            <form className="space-y-6">
-              {/* Username */}
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Email */}
               <div>
                 <label className="block text-lg font-bold text-yellow-500 mb-2">
-                  Username
+                  Email
                   <span className="text-red-500 ml-1">*</span>
                 </label>
                 <input
                   type="text"
-                  placeholder="Username"
+                  placeholder="Email"
                   className="w-full border border-yellow-500 bg-yellow-500 rounded-md p-4 text-white text-base placeholder-white focus:ring-yellow-500 focus:border-yellow-500"
+                  name="email"
+                  onChange={handleChange}
                 />
               </div>
 
@@ -61,6 +87,8 @@ export default function Home() {
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="w-full border border-yellow-500 bg-yellow-500 rounded-md p-4 text-white text-base placeholder-white focus:ring-yellow-500 focus:border-yellow-500"
+                    name="password"
+                    onChange={handleChange}
                   />
                   <button
                     type="button"
@@ -73,7 +101,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Checkbox */}
+              {/* Remember Me Checkbox */}
               <div className="flex items-center text-base">
                 <input
                   type="checkbox"
@@ -85,15 +113,16 @@ export default function Home() {
                 </label>
               </div>
 
-              {/* Button Masuk */}
-              <button
-                type="submit"
-                className="w-full bg-yellow-500 text-white py-3 rounded-md font-medium text-lg hover:bg-yellow-600 transition"
-              >
-                Masuk
-              </button>
+              {/* Login Button */}
+                <button
+                  type="submit"
+                  className="w-full bg-blue-500 text-white py-3 rounded-md font-medium text-lg hover:bg-blue-600 transition"
+                >
+                  Masuk
+                </button>
 
-              {/* Teks "Tidak memiliki akun?" */}
+
+              {/* Signup Link */}
               <p className="text-center text-yellow-500 mt-6 text-base">
                 Tidak memiliki akun?{" "}
                 <a
@@ -118,9 +147,13 @@ export default function Home() {
           className="absolute inset-0 z-10"
         />
         <div className="absolute bottom-4 left-4 bg-white bg-opacity-50 px-4 py-2 rounded-md">
-          <p className="text-sm font-medium text-blue-800">Game: Reverse: 1999</p>
+          <p className="text-sm font-medium text-blue-800">
+            Game: Reverse: 1999
+          </p>
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Home;

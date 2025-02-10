@@ -1,13 +1,15 @@
 "use client"
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Image from "next/image";
 import Diamond from "@/app/Assets/diamond.png"
 import { IoDiamondOutline } from "react-icons/io5";
 import { CiBag1 } from "react-icons/ci";
 import Logo from "@/app/Assets/logo el top ap kuning.png";
+import Modal from "../components/Modal";
 
 const TopUpPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("Twilight Pass");
+  const [popup,setPopup] = useState(false)
 
   const categories = [
     { name: "Twilight Pass", price: "Rp. 147.830" },
@@ -16,7 +18,8 @@ const TopUpPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <Fragment>
+      <div className="min-h-screen bg-white">
       <header className="bg-blue-500 text-white py-8">
         <div className="container mx-auto flex items-center justify-between">
           <Image src={Logo} width={120} height={120} alt="Logo" className="ml-0" />
@@ -164,7 +167,7 @@ const TopUpPage = () => {
         </div>
 
         {/* Submit Button */}
-        <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold p-3 rounded-lg hover:opacity-90 transition">
+        <button className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold p-3 rounded-lg hover:opacity-90 transition" onClick={() => setPopup(true )}>
           Beli!
         </button>
       </div>
@@ -205,6 +208,91 @@ const TopUpPage = () => {
         </div>
       </footer>
     </div>
+    <Modal isVisible={popup} onClose={() => setPopup(false)}>
+      <div className="">
+    <div className="flex justify-center items-center min-h-scree">
+      <div className="w-full max-w-full bg-white rounded-2xl shadow-lg p-6 border border-blue-300">
+        {/* Header Section */}
+        <div className="flex items-center gap-4">
+          <Image
+            src="/mobile-legends.jpg"
+            alt="Mobile Legends"
+            width={80}
+            height={80}
+            className="rounded-lg"
+          />
+          <div>
+            <h1 className="text-lg font-bold text-black">Konfirmasi Pemesanan:</h1>
+          </div>
+        </div>
+
+        {/* User Info Section */}
+        <div className="mt-4 text-sm text-gray-800">
+        <p className="text-sm text-black font-bold">User account info:</p>
+          <p><span className="font-semibold text-black">Username:</span> angkasa123</p>
+          <p><span className="font-semibold text-black">Nama Lengkap:</span> Udgam Angkasa</p>
+          <p><span className="font-semibold text-black">E-Mail:</span> elangkasa@gmail.com</p>
+          <p><span className="font-semibold text-black">Nomor Telepon:</span> 0812312312312</p>
+        </div>
+
+        <hr className="my-4 border-gray-300" />
+
+        {/* Order Details Section */}
+        <div className="text-sm">
+          <p className="font-bold text-black">MOONTON</p>
+          <p className="text-lg font-semibold text-black">Mobile Legends: Bang Bang</p>
+          <p className="text-black">Account ID: 12345678912 (1234)</p>
+        </div>
+
+        <hr className="my-4 border-gray-300" />
+
+        <div className="text-sm space-y-2">
+          <div className="flex justify-between">
+            <span>Item</span>
+            <span className="font-semibold">Weekly Diamond Pass</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Harga</span>
+            <span className="font-semibold">Rp. 27.488</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Biaya Admin</span>
+            <span className="font-semibold">Rp. 1.374,4</span>
+          </div>
+          <div className="flex justify-between">
+            <span>Kode Promo</span>
+            <span className="font-semibold">SIGMASKIBIDI</span>
+          </div>
+        </div>
+
+        <hr className="my-4 border-gray-300" />
+
+        {/* Total Payment Section */}
+        <div className="text-sm font-semibold">
+          <div className="flex justify-between">
+            <span>Total Pembayaran:</span>
+            <span className="text-lg">Rp. 28.862,4</span>
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <Image
+              src="/gopay-logo.png"
+              alt="GoPay"
+              width={20}
+              height={20}
+            />
+            <span>payment: </span>
+            <span className="font-semibold">GoPay</span>
+          </div>
+        </div>
+
+        <button className="mt-6 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-lg shadow">
+          Konfirmasi
+        </button>
+      </div>
+    </div>
+      </div>
+    </Modal>
+    </Fragment>
   );
 };
 
