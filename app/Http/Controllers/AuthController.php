@@ -70,30 +70,30 @@ public function logout(Request $request)
     ]);
 }
 
-// public function changePassword(Request $request)
-// {
-//     $request->validate([
-//         'current_password' => 'required',
-//         'new_password' => 'required|min:6|confirmed', // Password baru harus dikonfirmasi
-//     ]);
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|min:6|confirmed', // Password baru harus dikonfirmasi
+    ]);
 
-//     $user = $request->user();
+    $user = $request->user();
 
-//     // Cek apakah password lama benar
-//     if (!Hash::check($request->current_password, $user->password)) {
-//         throw ValidationException::withMessages([
-//             'current_password' => ['Password lama salah.']
-//         ]);
-//     }
+    // Cek apakah password lama benar
+    if (!Hash::check($request->current_password, $user->password)) {
+        throw ValidationException::withMessages([
+            'current_password' => ['Password lama salah.']
+        ]);
+    }
 
-//     // Update password baru
-//     $user->password = Hash::make($request->new_password);
-//     $user->save();
+    // Update password baru
+    $user->password = Hash::make($request->new_password);
+    $user->save();
 
-//     return response()->json([
-//         'message' => 'Password berhasil diubah!'
-//     ]);
-// }
+    return response()->json([
+        'message' => 'Password berhasil diubah!'
+    ]);
+}
 
 
     
