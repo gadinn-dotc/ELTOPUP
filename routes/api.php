@@ -3,6 +3,11 @@
 use App\Http\Controllers\authController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
+
+// CRUD Routes untuk Game
+Route::apiResource('games', GameController::class);
+
 
 // Rute yang bisa diakses tanpa autentikasi
 Route::post('/register', [AuthController::class, 'register']);
@@ -19,3 +24,4 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
+// Game routes
