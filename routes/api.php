@@ -11,7 +11,7 @@ Route::post('/login', [AuthController::class, 'login']);
 // Rute yang butuh autentikasi Sanctum
 Route::middleware('auth:sanctum')->group(function () {
     Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
-    Route::post('/change-password', [AuthController::class, 'changePassword']);
+    // Route::post('/change-password', [AuthController::class, 'changePassword']);
     
     // Contoh rute lain yang butuh autentikasi
     Route::get('/profile', function (Request $request) {
