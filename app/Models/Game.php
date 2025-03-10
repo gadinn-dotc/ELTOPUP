@@ -11,4 +11,4 @@ class Game extends Model
 
     // Menambahkan kolom yang bisa diassign secara massal
     protected $fillable = ['name'];
-}
+};
