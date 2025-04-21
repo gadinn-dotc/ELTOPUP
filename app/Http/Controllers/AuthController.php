@@ -74,7 +74,8 @@ public function changePassword(Request $request)
 {
     $request->validate([
         'current_password' => 'required',
-        'new_password' => 'required|min:6|confirmed', // Password baru harus dikonfirmasi
+        'new_password' => 'required|min:6',
+        'new_password_confirmation' => 'required|same:new_password',
     ]);
 
     $user = $request->user();
@@ -86,7 +87,7 @@ public function changePassword(Request $request)
         ]);
     }
 
-    // Update password baru
+    // Simpan password baru
     $user->password = Hash::make($request->new_password);
     $user->save();
 
@@ -95,6 +96,46 @@ public function changePassword(Request $request)
     ]);
 }
 
+
+public function updateProfile(Request $request)
+{
+    $user = $request->user(); // User yang sedang login
+
+    // Validasi data umum
+    $request->validate([
+        'nama_lengkap' => 'required|string|max:255',
+        'username' => 'required|string|max:255|unique:users,username,' . $user->id,
+        'email' => 'required|email|unique:users,email,' . $user->id,
+    ]);
+
+    // Kalau user mau ganti password, validasi dan proses
+    if ($request->filled('current_password') || $request->filled('new_password') || $request->filled('confirm_password')) {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:6',
+            'confirm_password' => 'required|same:new_password',
+        ]);
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return response()->json([
+                'message' => 'Password lama salah.'
+            ], 422);
+        }
+
+        $user->password = Hash::make($request->new_password);
+    }
+
+    // Update profil
+    $user->nama_lengkap = $request->nama_lengkap;
+    $user->username = $request->username;
+    $user->email = $request->email;
+    $user->save();
+
+    return response()->json([
+        'message' => 'Profil berhasil diperbarui',
+        'user' => $user
+    ]);
+}
 
     
 };
